@@ -11,6 +11,13 @@
  *  カスタムブロック
  */
 //% weight=0 color=#F22E1F icon="\uf076" block="キュー：ビット"
+// 回転の向き
+enum CustomRotateDir {
+    // 右向きに回転する
+    Right = 0,
+    // 左向きに回転する
+    Left = 1
+}
 namespace cuebit {
     let b_Init = false; // 初期化済みフラグ
     /**
@@ -32,6 +39,31 @@ namespace cuebit {
         basic.pause(1000);
         // 初期化完了
         b_Init = true;
+    }
+    /**
+    * みぎに回転（かいてん）する
+    */
+    //% block="↷ みぎに回転（かいてん）する"
+    //% group="基本（きほん）"
+    export function rightRotate_90() : void {
+        // 右に90度回転する
+        rightRotate(90);
+    }
+    /**
+    * 指定した角度回転する
+    */
+    //% block="右（みぎ）に%value 度（ど）回転（かいてん）する"
+    //% group="応用（おうよう）"
+    export function rightRotate(value : number) : void {
+        basic.showLeds(`
+                # # # # .
+                . . . # .
+                . # . # .
+                . . # # #
+                . . . # .
+        `)
+        let strValue = "R" + value;
+        sendText(strValue);
     }
     /**
     * シリアル通信で文字列を送信します
