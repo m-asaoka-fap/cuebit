@@ -1,0 +1,1 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><variables></variables><block type="pxt-on-start" id="#XzvjPKa.xOn++H5sg/b" x="41" y="48"><statement name="HANDLER"><block type="cuebit_start" id="sI(mJ/e%]l][4Z^r)}:W"></block></statement></block><block type="device_forever" id="Oj$U^2pJEyxZKPaU/mN#" x="49" y="220"></block></xml>
