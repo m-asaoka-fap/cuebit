@@ -1,5 +1,5 @@
 /*
- * StackChan:bit for micro:bit customblocks
+ * cue:bit for micro:bit customblocks
  *
  * Copyright © 2024-2025 FAP. All rights reserved.
  *
