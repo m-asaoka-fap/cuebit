@@ -4,6 +4,7 @@
  * Copyright © 2024-2025 FAP. All rights reserved.
  *
  * 2024.12.29  (FAP)m-asaoka  新規作成
+ * 2025.03.31  (FAP)m-asaoka  micro:bit命令スタック状態修正／停止状態コマンド修正
  *
  */
 /**
@@ -50,13 +51,14 @@ namespace cuebit {
         }
     }
     /**
-    * ブレーキ（一時停止）
+    * ブレーキ（停止）
     */
-    //% block="■ ■ 一旦停止（いったんていし）"
+    //% block="■ ■ 停止（ていし）"
     //% group="基本（きほん）"
     export function brake() :void {
         let strText = "B";
         sendText(strText);
+        command_enable = 1;
         basic.showLeds(`
         # # . # #
         # # . # #
@@ -64,6 +66,9 @@ namespace cuebit {
         # # . # #
         # # . # #
         `)
+        // 次のコマンドまで2秒以上必要なので、2秒間はWaitする
+        basic.pause(2000);
+        command_enable = 0;
     }
     /**
     * まっすぐ進む（10㎝）
@@ -125,7 +130,7 @@ namespace cuebit {
     export function forward(value : number) : void {
         let strText = "F" + value;
         sendText(strText);
-        showLedText(strText);
+        //showLedText(strText);
         basic.showLeds(`
         . . # . .
         . # # # .
@@ -142,7 +147,7 @@ namespace cuebit {
     export function back(value: number): void {
         let strText = "F" + "-" + value; 
         sendText(strText);
-        showLedText(strText);
+        //showLedText(strText);
         basic.showLeds(`
         . . # . .
         . . # . .
@@ -159,7 +164,8 @@ namespace cuebit {
     //% group="応用（おうよう）"
     export function rightRotate(value : number) : void {
         let strValue = "R" + value;
-        showLedText(strValue);
+        sendText(strValue);
+        //showLedText(strValue);
         basic.showLeds(`
                 # # # # .
                 . . . # .
@@ -167,7 +173,6 @@ namespace cuebit {
                 . . # # #
                 . . . # .
         `)
-        sendText(strValue);
     }
     /**
     * 指定した角度に左回転する
@@ -175,9 +180,9 @@ namespace cuebit {
     //% block="左（ひだり）に%value 度（ど）回転（かいてん）する"
     //% group="応用（おうよう）"
     export function leftRotate(value: number): void {
-        let strValue = "L" + value;
+        let strValue = "R" +　"-" + value;
         sendText(strValue);
-        showLedText(strValue);
+        //showLedText(strValue);
         basic.showLeds(`
                 . # # # #
                 . # . . .
@@ -194,7 +199,7 @@ namespace cuebit {
     export function ziguzagu(value: number) : void {
         let strValue = "Z" + value;
         sendText(strValue);
-        showLedText(strValue);
+        //showLedText(strValue);
         basic.showIcon(IconNames.Yes);
 
     }
@@ -206,7 +211,7 @@ namespace cuebit {
     export function skate(value: number) : void  {
         let strValue = "S" + value;
         sendText(strValue);
-        showLedText(strValue);
+        //showLedText(strValue);
         basic.showIcon(IconNames.Diamond);
     }
     /**
