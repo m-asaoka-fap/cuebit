@@ -1,5 +1,5 @@
 input.onButtonPressed(Button.A, function () {
-    cuebit.forward_10()
+    cuebit.back_10()
 })
 cuebit.start()
 basic.forever(function () {

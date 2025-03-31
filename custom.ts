@@ -23,17 +23,15 @@ namespace cuebit {
         serial.redirect(
             SerialPin.P0,
             SerialPin.P1,
-            BaudRate.BaudRate115200
+            BaudRate.BaudRate9600
         )
         // セットアップが終わるまでWait
         basic.pause(1000);
-        // 今からmicrobitプログラミングを開始するよ、コマンドを送信
-        sendText("$");
-        basic.pause(1000);
+        // シリアル通信にて、文字列を送信する // ここは直接通信をする
+        let strCmd = "$";
+        serial.writeLine(strCmd);
         // 初期化完了
         b_Init = true;
-        // 一時停止を入れる
-        brake();
         basic.showIcon(IconNames.Heart);
     }
     /**
@@ -57,6 +55,8 @@ namespace cuebit {
     //% block="■ ■ 一旦停止（いったんていし）"
     //% group="基本（きほん）"
     export function brake() :void {
+        let strText = "B";
+        sendText(strText);
         basic.showLeds(`
         # # . # #
         # # . # #
@@ -64,8 +64,6 @@ namespace cuebit {
         # # . # #
         # # . # #
         `)
-        let strText = "B";
-        sendText(strText);
     }
     /**
     * まっすぐ進む（10㎝）
@@ -126,6 +124,7 @@ namespace cuebit {
     //% group="応用（おうよう）"
     export function forward(value : number) : void {
         let strText = "F" + value;
+        sendText(strText);
         showLedText(strText);
         basic.showLeds(`
         . . # . .
@@ -134,7 +133,6 @@ namespace cuebit {
         . . # . .
         . . # . .
         `)
-        sendText(strText);
     }
     /**
     * 指定したXX㎝後ろに進む
@@ -143,6 +141,7 @@ namespace cuebit {
     //% group="応用（おうよう）"
     export function back(value: number): void {
         let strText = "F" + "-" + value; 
+        sendText(strText);
         showLedText(strText);
         basic.showLeds(`
         . . # . .
@@ -151,7 +150,7 @@ namespace cuebit {
         . # # # .
         . . # . .
         `)
-        sendText(strText);
+        
     }
     /**
     * 指定した角度に右回転する
@@ -177,6 +176,7 @@ namespace cuebit {
     //% group="応用（おうよう）"
     export function leftRotate(value: number): void {
         let strValue = "L" + value;
+        sendText(strValue);
         showLedText(strValue);
         basic.showLeds(`
                 . # # # #
@@ -185,7 +185,6 @@ namespace cuebit {
                 # # # . .
                 . # . . .
         `)
-        sendText(strValue);
     }
     /**
     * 指定したXXcmジグザグ走行（そうこう）する
@@ -194,9 +193,10 @@ namespace cuebit {
     //% group="応用（おうよう）"
     export function ziguzagu(value: number) : void {
         let strValue = "Z" + value;
+        sendText(strValue);
         showLedText(strValue);
         basic.showIcon(IconNames.Yes);
-        sendText(strValue);
+
     }
     /**
     * 指定したXXcmスケート走行（そうこう）する
@@ -205,9 +205,9 @@ namespace cuebit {
     //% group="応用（おうよう）"
     export function skate(value: number) : void  {
         let strValue = "S" + value;
+        sendText(strValue);
         showLedText(strValue);
         basic.showIcon(IconNames.Diamond);
-        sendText(strValue);
     }
     /**
     * シリアル通信で文字列を送信します
