@@ -32,6 +32,8 @@ namespace cuebit {
         basic.pause(1000);
         // 初期化完了
         b_Init = true;
+        // 一時停止を入れる
+        brake();
         basic.showIcon(IconNames.Heart);
     }
     /**
