@@ -107,7 +107,7 @@ namespace cuebit {
     /**
      * ジグザグ走行(15cmほど)
      */
-    //% block="線（せん）に沿って（そって）ジグザクに進む（すすむ）"
+    //% block="ジグザクに進む（すすむ）"
     //% group="基本（きほん）"
     export function ziguzagu_15():void {
         // 15センチほどジグザク走行する
@@ -116,7 +116,7 @@ namespace cuebit {
     /**
      * スケート走行(15cmほど)
     */
-    //% block="線（せん）に沿って（そって）スケート走行（そうこう）する"
+    //% block="スケート走行（そうこう）する"
     //% group="基本（きほん）"
     export function skate_15() : void  {
         // 15センチほどスケート走行する
@@ -194,7 +194,7 @@ namespace cuebit {
     /**
     * 指定したXXcmジグザグ走行（そうこう）する
     */
-    //% block="%value cm（センチ）線（せん）にそって ジグザグ走行（そうこう）する"
+    //% block="%value cm（センチ）ジグザグ走行（そうこう）する"
     //% group="応用（おうよう）"
     export function ziguzagu(value: number) : void {
         let strValue = "Z" + value;
@@ -206,7 +206,7 @@ namespace cuebit {
     /**
     * 指定したXXcmスケート走行（そうこう）する
     */
-    //% block="%value cm（センチ）線（せん）にそって スケート走行（そうこう）する"
+    //% block="%value cm（センチ）スケート走行（そうこう）する"
     //% group="応用（おうよう）"
     export function skate(value: number) : void  {
         let strValue = "S" + value;
